@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class PeaShooter : MonoBehaviour
+public class PeaShooter : Plant
 {
     public float interval;
 
@@ -13,15 +13,18 @@ public class PeaShooter : MonoBehaviour
 
     public Transform bulletPos;
 
-    [Header("基础属性")]
-    public float health = 100;
-    private float currentHealth;
+    // [Header("基础属性")]
+    // public float health = 100;
+    // private float currentHealth;
 
-    private void Start() {
-        currentHealth = health;
+    protected override void Start() {
+        base.Start();
     }
 
     private void Update() {
+        if(!start)
+            {return;}
+
         timer += Time.deltaTime;
 
         if (timer > interval) {
@@ -30,13 +33,5 @@ public class PeaShooter : MonoBehaviour
         }
     }
 
-    public float ChangeHealth(float num)
-    {
-        currentHealth  = Mathf.Clamp(currentHealth + num , 0 ,health );
-        if(currentHealth <= 0)
-        {
-            GameObject.Destroy(gameObject);
-        }
-        return currentHealth;
-    }
+    
 }

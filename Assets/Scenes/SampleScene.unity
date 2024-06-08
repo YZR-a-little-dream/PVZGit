@@ -3553,10 +3553,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4234036bf4e40b240a5cb9314487c801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sunNum: 50
+  sunNum: 1500
   bornParent: {fileID: 1097200608}
   zombiePrefab: {fileID: 2697361965603698146, guid: 702f4d42692e35749a1eba81186379fe, type: 3}
-  createzombieTime: 3
+  createzombieTime: 2
 --- !u!4 &1599807724
 Transform:
   m_ObjectHideFlags: 0
@@ -4944,7 +4944,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100
+  m_Text: 150
 --- !u!222 &2113532568
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5048,11 +5048,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2697361965603698146, guid: 702f4d42692e35749a1eba81186379fe, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8712601087329852963, guid: 702f4d42692e35749a1eba81186379fe, type: 3}
       propertyPath: damage
-      value: 20
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8712601087329852963, guid: 702f4d42692e35749a1eba81186379fe, type: 3}
+      propertyPath: damageInterval
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 702f4d42692e35749a1eba81186379fe, type: 3}

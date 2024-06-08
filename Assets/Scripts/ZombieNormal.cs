@@ -77,8 +77,8 @@ public class ZombieNormal : MonoBehaviour
             {
                 damageTimer  = 0;
                 //对植物造成伤害
-                PeaShooter PeaShooter =  other.GetComponent<PeaShooter>();
-                float newHealth =  PeaShooter.ChangeHealth(-damage);
+                Plant plant =  other.GetComponent<Plant>();
+                float newHealth =  plant.ChangeHealth(-damage);
                 if(newHealth <= 0)
                 {
                     isWalk = true;

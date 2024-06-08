@@ -85,9 +85,14 @@ public class Card : MonoBehaviour
                 //把当前物体添加为土地的子物体
                 curGameObject.transform.parent = col2.transform;
                 curGameObject.transform.localPosition = Vector3.zero;
+                //启用植物碰撞器和动画
+                curGameObject.GetComponent<Plant>().SetPlantStart();
                 curGameObject = null;
                 //扣除太阳花费
                 GameManager.Instance.ChangeSunNum(-useSun);
+                //重置计时器
+                timer = 0;
+                
                 break;
             }
         }

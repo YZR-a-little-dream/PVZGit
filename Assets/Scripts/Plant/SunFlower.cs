@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class SunFlower : MonoBehaviour
+public class SunFlower : Plant
 {
     public GameObject sunPrefab;
-    private Animator animator;
+    
     public float readyTime;
     private float timer;
 
     //在太阳花两侧生成的随机数
     private int sunNum;
 
-    private void Start() {
-        animator = GetComponent<Animator>();
+    protected override void Start() {
+        base.Start();
         timer = 0;
+        sunNum = 0;
     }
 
     private void Update() {
+        if(!start)
+            return;
         timer += Time.deltaTime;
         if(timer > readyTime) {
             animator.SetBool("Ready", true);
