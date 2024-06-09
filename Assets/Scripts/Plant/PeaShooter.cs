@@ -24,7 +24,6 @@ public class PeaShooter : Plant
     private void Update() {
         if(!start)
             {return;}
-
         timer += Time.deltaTime;
 
         if (timer > interval) {

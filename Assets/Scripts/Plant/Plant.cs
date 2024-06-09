@@ -21,6 +21,7 @@ public class Plant : MonoBehaviour
         boxCollider2D.enabled = false;
     }
 
+
     //种植完成后启动植物
     public void SetPlantStart()
     {
@@ -31,7 +32,7 @@ public class Plant : MonoBehaviour
         boxCollider2D.enabled = true;
     }
 
-    public float ChangeHealth(float num)
+    public virtual float ChangeHealth(float num)
     {
         currentHealth  = Mathf.Clamp(currentHealth + num , 0 ,health );
         if(currentHealth <= 0)

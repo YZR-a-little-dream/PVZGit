@@ -119,6 +119,7 @@ public class ZombieNormal : MonoBehaviour
     public void DieAniOver()
     {
         animator.enabled = false;
+        GameManager.Instance.ZombieDied(gameObject);
         GameObject.Destroy(gameObject);
     }
 }
