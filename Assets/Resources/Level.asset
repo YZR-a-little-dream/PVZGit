@@ -19,6 +19,12 @@ MonoBehaviour:
     createTime: 0
     zombieType: 1
     bornPos: 0
+  - id: 1
+    levelId: 1
+    progressId: 1
+    createTime: 2
+    zombieType: 1
+    bornPos: 3
   - id: 5
     levelId: 1
     progressId: 2

@@ -11,8 +11,9 @@ public class GameManager : Singleton<GameManager>
     public float createzombieTime;      //僵尸生成间隔时间
     private int zOrderIndex;            //僵尸生成层级 用来解决过多僵尸生成后僵尸闪烁的问题
 
-    //读取表格数据
+    //读取表格数据(关卡波次，关卡波次)
     [HideInInspector] public LevelData levelData;
+    [HideInInspector] public LevelInfo levelInfo;
     public bool gameStart;
     //关卡
     public int curLevelId = 1;
@@ -36,8 +37,11 @@ public class GameManager : Singleton<GameManager>
     IEnumerator LoadTable()
     {
         ResourceRequest request = Resources.LoadAsync("Level");
+        ResourceRequest request2 = Resources.LoadAsync("LevelInfo");
         yield return request;
         levelData = request.asset as LevelData;
+        yield return request2;
+        levelInfo = request2.asset as LevelInfo;
         GameStart();
     }
 
@@ -64,7 +68,10 @@ public class GameManager : Singleton<GameManager>
     public void CreateZombie()
     {
         //StartCoroutine(DalayCreateZombie());
+        curProgressZombie = new List<GameObject>();
         TableCreateZombie();
+        //调用初始化面板的函数
+        UIManager.Instance.InitProgressPanel();
     }
 
     //根据表格数据创建僵尸
@@ -118,12 +125,14 @@ public class GameManager : Singleton<GameManager>
         if(curProgressZombie.Contains(gameObject))
         {
             curProgressZombie.Remove(gameObject);
+            //僵尸死亡后更新进度条
+            UIManager.Instance.UpdateProgressPanel();
         }
         //当前波次的僵尸全部被消灭 开启下一个波次
         if(curProgressZombie.Count == 0)
         {
             curProgressId += 1;
-            CreateZombie();
+            TableCreateZombie();
         }
     }
 
