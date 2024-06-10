@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Torchwood : MonoBehaviour
+public class Torchwood : Plant
 {
     //火焰子弹预制件
     private GameObject FireBulletPrefab;
 
-    private void Start() {
+    protected override void Start() {
+        base.Start();
         FireBulletPrefab = Resources.Load("Prefab/FireBullet") as GameObject;
     }
 
@@ -24,8 +25,9 @@ public class Torchwood : MonoBehaviour
             }
             //销毁
             bullet.DestroyBullet();
-            //计算触发点位置 生成火焰子弹
-            CreateBullet(other.bounds.ClosestPoint(transform.position));
+            //计算触发点位置 生成火焰子弹 计算偏移量希望在僵尸脚底生成火焰
+            Vector3 offest = new Vector3(10,0,0);
+            CreateBullet(other.bounds.ClosestPoint(transform.position) + offest);
         }
         
     }

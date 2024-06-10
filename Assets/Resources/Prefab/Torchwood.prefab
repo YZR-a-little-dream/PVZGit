@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2716670399077799915}
   m_Layer: 0
   m_Name: Torchwood
-  m_TagString: Untagged
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,6 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c26b2758aa37e814fa9ba2f0ecd3e112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  currentHealth: 0
 --- !u!50 &2716670399077799915
 Rigidbody2D:
   serializedVersion: 4
