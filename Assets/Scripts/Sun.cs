@@ -26,7 +26,7 @@ public class Sun : MonoBehaviour
         //先移动到落点
         if(targetPos != Vector3.zero && Vector3.Distance(targetPos,transform.position) > 0.1f)
         {
-            transform.position = Vector3.MoveTowards(transform.position,targetPos,10);
+            transform.position = Vector3.MoveTowards(transform.position,targetPos,0.1f);
             return;
         }
         //再延时销毁
@@ -43,7 +43,5 @@ public class Sun : MonoBehaviour
         GameObject.Destroy(gameObject);
         //点击后：增加阳光数量
         GameManager.Instance.ChangeSunNum(25);
-        
-
     }
 }

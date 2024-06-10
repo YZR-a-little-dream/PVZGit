@@ -156,6 +156,21 @@ public class GameManager : Singleton<GameManager>
     //     StartCoroutine(DalayCreateZombie());
     // }
 
-    
+    public void CreateSunDown()
+    {
+        //获取左下角，右上角的世界坐标
+        Vector3 leftBottom = Camera.main.ViewportToWorldPoint(Vector2.zero);
+        Vector3 rightTop = Camera.main.ViewportToWorldPoint(Vector2.one);
+        //加载Sun预制体
+        GameObject sunPrefab = Resources.Load("Prefab/Sun") as GameObject;
+        //初始化太阳位置
+        float x = Random.Range(leftBottom.x + 30,rightTop.x -30);
+        Vector3 bornPos = new Vector3(x,rightTop.y,0);
+        GameObject sun = Instantiate(sunPrefab,bornPos,Quaternion.identity);
+        //设置目标位置
+        float y = Random.Range(rightTop.y - 80,rightTop.y - 30);
+        sun.GetComponent<Sun>().SetTargetPos(new Vector3(bornPos.x,y,0));
+
+    }
     
 }

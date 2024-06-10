@@ -53,7 +53,6 @@ public class UIManager : Singleton<UIManager>
             }
         }
         
-        Debug.Log(progressNum);
         //当前波次剩余僵尸数量
         int remainNum = GameManager.Instance.curProgressZombie.Count;
         //当前波次进行到多少百分比

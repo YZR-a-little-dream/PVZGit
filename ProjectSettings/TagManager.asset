@@ -7,6 +7,7 @@ TagManager:
   - Land
   - Plant
   - Zombie
+  - Bullet
   layers:
   - Default
   - TransparentFX

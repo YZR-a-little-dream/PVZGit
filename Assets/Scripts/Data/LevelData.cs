@@ -19,14 +19,6 @@ public class LevelItem
     public int bornPos;
 }
 
-
-//关卡信息
-[CreateAssetMenu(menuName = "Data",fileName = "LevelInfo",order = 1)]
-public class LevelInfo : ScriptableObject
-{
-    public List<LevelInfoItem> LevelInfoList = new List<LevelInfoItem>();
-}
-
 [System.Serializable]
 public class LevelInfoItem
 {
