@@ -53,6 +53,7 @@ public class GameManager : Singleton<GameManager>
         CreateZombie();
         InvokeRepeating("CreateSunDown",10,10);
         gameStart = true;
+        SoundManager.Instance.PlayBGM(Globals.BGM1);
     }
 
     public void ChangeSunNum(int changeNum)

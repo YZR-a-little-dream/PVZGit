@@ -44,6 +44,7 @@ public class Card : MonoBehaviour
         }
     }
 
+    //点击卡片开始拖拽
     public void OnBeginDrag(BaseEventData data)
     {
         //判断是否可以种植，压黑存在则无法种植
@@ -55,6 +56,8 @@ public class Card : MonoBehaviour
         curGameObject = Instantiate(objectPrefab);
         
         curGameObject.transform.position = TranlateScreenToWorld(pointerEventData.position);
+        //播放点击卡片的声音
+        SoundManager.Instance.PlaySound(Globals.S_Seedlift);
     }
 
     public void OnDrag(BaseEventData data)
@@ -87,6 +90,9 @@ public class Card : MonoBehaviour
                 curGameObject.transform.localPosition = Vector3.zero;
                 //启用植物碰撞器和动画
                 curGameObject.GetComponent<Plant>().SetPlantStart();
+                //播放种植到土地上的声音
+                SoundManager.Instance.PlaySound(Globals.S_Plant);
+                //重置默认值，生成结束
                 curGameObject = null;
                 //扣除太阳花费
                 GameManager.Instance.ChangeSunNum(-useSun);
