@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5947878229534917190}
   - component: {fileID: 5947878229534917195}
   - component: {fileID: 4203769775580992562}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SunFlower
   m_TagString: Plant
   m_Icon: {fileID: 0}
@@ -118,6 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab58f9109b316f1449df47583057eb53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  currentHealth: 0
   sunPrefab: {fileID: 8349112403961022858, guid: 5a889a3da06639e4496cde3eb67e96ed, type: 3}
   readyTime: 3
 --- !u!61 &4203769775580992562

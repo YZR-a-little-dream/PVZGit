@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 1253546746662975859}
   - component: {fileID: 1253546746662975863}
   - component: {fileID: 1253546746662975862}
-  m_Layer: 0
+  - component: {fileID: 4229971}
+  m_Layer: 8
   m_Name: Squash
-  m_TagString: Plant
+  m_TagString: Squash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,3 +154,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 68.10481, y: 72.48637}
   m_EdgeRadius: 0
+--- !u!114 &4229971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253546746662975858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02a1094f7e7dbfc469d10d2a6ef61b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  currentHealth: 0
+  damage: 100

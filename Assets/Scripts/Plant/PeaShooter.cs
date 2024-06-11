@@ -22,15 +22,35 @@ public class PeaShooter : Plant
     }
 
     private void Update() {
-        if(!start)
-            {return;}
-        timer += Time.deltaTime;
-
-        if (timer > interval) {
-            timer = 0;
-            Instantiate(bullet, bulletPos.position, Quaternion.identity);
-        }
+        checkZombieInRange();
     }
 
-    
+    //通过射线检测来检测僵尸
+    public void checkZombieInRange()
+    {
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position,Vector2.right,1000f,
+                                1 << LayerMask.NameToLayer("Zombie"));  
+        //Debug.Log(hitInfo.collider.gameObject); 
+        if(hitInfo)
+        {
+            if(hitInfo.collider.gameObject.CompareTag("Zombie"))
+                {
+                    fireBullet();
+                }
+        }              
+                  
+    }
+
+    public void fireBullet()
+    {
+       if(!start)
+            {return;}
+            timer += Time.deltaTime;
+
+            if (timer > interval) {
+            timer = 0;
+            Instantiate(bullet, bulletPos.position, Quaternion.identity);
+            }     
+    }
+
 }

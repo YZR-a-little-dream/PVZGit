@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2575322112765763333}
   - component: {fileID: 2575322112765763338}
   - component: {fileID: -7683795243835418655}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Peashooter
   m_TagString: Plant
   m_Icon: {fileID: 0}
@@ -119,6 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c81f62830000c47bbe49e02b789386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  currentHealth: 0
   interval: 2
   bullet: {fileID: 6354335863507239611, guid: 2c73d48152f3892408ca1d8a5611a13c, type: 3}
   bulletPos: {fileID: 2575322113105362012}
@@ -157,7 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2575322113105362012}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bulletPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}

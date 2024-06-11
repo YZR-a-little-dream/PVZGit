@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2716670399077799913}
   - component: {fileID: 2716670399077799914}
   - component: {fileID: 2716670399077799915}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Torchwood
   m_TagString: Plant
   m_Icon: {fileID: 0}
