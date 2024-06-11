@@ -21,7 +21,6 @@ public class AllCardPanel : MonoBehaviour
 
    public void InitCards()
    {
-    Debug.Log("1111111");
     foreach(PlantInfoItem plantInfo in GameManager.Instance.plantInfo.plantInfoList)
     {
         Transform cardParent = Bg.transform.Find("Card" + plantInfo.plantId);
