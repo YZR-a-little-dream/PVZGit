@@ -8,10 +8,15 @@ public class UIManager : Singleton<UIManager>
 
     public ProgressPanel progressPanel;
 
+    //选卡栏
+    public AllCardPanel allCardPanel;
+
     public void InitUI()
     {
         sunNumText.text = GameManager.Instance.sunNum.ToString();
         progressPanel.gameObject.SetActive(false);
+        //选卡栏初始化
+        allCardPanel.InitCards();
     }
 
     public void UpdateUI()

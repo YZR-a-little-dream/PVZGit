@@ -11,7 +11,7 @@ public class Startup
     static Startup()
     {
         string path = Application.dataPath + "/Editor/关卡管理.xlsx";
-        string assetName = "Level";
+        string assetName = "TableData/Level";
         FileInfo fileInfo = new FileInfo(path);
         //创建序列化类
         LevelData levelData = (LevelData)ScriptableObject.CreateInstance(typeof(LevelData));

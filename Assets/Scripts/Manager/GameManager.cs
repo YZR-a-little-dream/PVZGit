@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
     //读取表格数据(关卡波次，关卡波次)
     [HideInInspector] public LevelData levelData;
     [HideInInspector] public LevelInfo levelInfo;
+    [HideInInspector] public PlantInfo plantInfo;
     public bool gameStart;
     //关卡
     public int curLevelId = 1;
@@ -31,19 +32,27 @@ public class GameManager : Singleton<GameManager>
     //读取表格信息
     void ReadTable()
     {
-        StartCoroutine(LoadTable());
+        //StartCoroutine(LoadTable());
+        LoadTableNew();
     }
 
-    IEnumerator LoadTable()
+    public void LoadTableNew()
     {
-        ResourceRequest request = Resources.LoadAsync("Level");
-        ResourceRequest request2 = Resources.LoadAsync("LevelInfo");
-        yield return request;
-        levelData = request.asset as LevelData;
-        yield return request2;
-        levelInfo = request2.asset as LevelInfo;
+        levelData =  Resources.Load("TableData/Level") as LevelData;
+        levelInfo = Resources.Load("TableData/LevelInfo") as LevelInfo;
+        plantInfo = Resources.Load("TableData/plantInfo") as PlantInfo;
         GameStart();
     }
+    // IEnumerator LoadTable()
+    // {
+    //     ResourceRequest request = Resources.LoadAsync("Level");
+    //     ResourceRequest request2 = Resources.LoadAsync("LevelInfo");
+    //     yield return request;
+    //     levelData = request.asset as LevelData;
+    //     yield return request2;
+    //     levelInfo = request2.asset as LevelInfo;
+        
+    // }
 
     private void GameStart()
     {
