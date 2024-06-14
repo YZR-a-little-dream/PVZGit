@@ -25,9 +25,16 @@ public class AllCardPanel : MonoBehaviour
     {
         Transform cardParent = Bg.transform.Find("Card" + plantInfo.plantId);
         GameObject reallyCard = Instantiate(plantInfo.cardPrefab) as GameObject;
+        reallyCard.GetComponent<Card>().plantInfoItem = plantInfo;
         reallyCard.transform.SetParent(cardParent,false);
         reallyCard.transform.localPosition = Vector2.zero;
         reallyCard.name = "BeforeCard";
     }
+   }
+
+   //完成选卡后 点击开始摇滚后  开始游戏
+   public void OnBtnStart()
+   {
+        GameManager.Instance.GameReallyStart();
    }
 }

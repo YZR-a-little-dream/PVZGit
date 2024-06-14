@@ -59,12 +59,16 @@ public class GameManager : Singleton<GameManager>
         //初始化UI控件
         UIManager.Instance.InitUI();
 
-        CreateZombie();
-        InvokeRepeating("CreateSunDown",10,10);
-        gameStart = true;
-        SoundManager.Instance.PlayBGM(Globals.BGM1);
     }
 
+    public void GameReallyStart()
+    {
+        GameManager.Instance.gameStart = true;
+        CreateZombie();
+        InvokeRepeating("CreateSunDown",10,10);
+        //播放背景音乐
+        SoundManager.Instance.PlayBGM(Globals.BGM1);
+    }
     public void ChangeSunNum(int changeNum)
     {
         sunNum += changeNum;
