@@ -6,8 +6,9 @@ using UnityEngine.UI;
 
 public class UserPanel : BasePanel
 {
-    public Button bttonOK;
-    public Button buttonCancel;
+    public Button btnOk;
+    public Button btnCancel;
+    public Button btnDelete;
     public ScrollRect scroll;           //滚动容器
     public GameObject UserNamePrefab;     //用户名预制件
     private List<UserData> testData;    //测试数据
@@ -27,13 +28,16 @@ public class UserPanel : BasePanel
     protected override void Awake()
     {
         base.Awake();
-        bttonOK.onClick.AddListener(OnBtnOK);
-        buttonCancel.onClick.AddListener(OnBtnCancel);
+        btnOk.onClick.AddListener(OnBtnOK);
+        btnCancel.onClick.AddListener(OnBtnCancel);
+        btnDelete.onClick.AddListener(OnBtnDelete);
 
-        testData = new List<UserData>();
-        testData.Add(new UserData("yzr1",1));
-        testData.Add(new UserData("yzr2",2));
+        // testData = new List<UserData>();
+        // testData.Add(new UserData("yzr1",1));
+        // testData.Add(new UserData("yzr2",2));
     }
+
+    
 
     private void Start() {
         RefreshMainPanel();
@@ -42,7 +46,6 @@ public class UserPanel : BasePanel
     private void RefreshMainPanel()
     {
         //remove all children
-        print("~~~~~~~~~~~~~~~~~~~");
         foreach(Transform child in scroll.content)
         {
             //print(child);
@@ -50,7 +53,7 @@ public class UserPanel : BasePanel
         }
         //init all children
         menuNameItems = new Dictionary<string, UserNameItem>();
-        foreach(UserData userData in testData)
+        foreach(UserData userData in LocalConfig.LoadAllUserData())
         {
             Transform prefab = Instantiate(UserNamePrefab).transform; 
             prefab.SetParent(scroll.content,false);
@@ -89,5 +92,17 @@ public class UserPanel : BasePanel
         ClosePanel();
     }
 
+    private void OnBtnDelete()
+    {
+        //如果没有选中
+        if(CurName == "")
+            return;
+        bool isSuccess =  LocalConfig.ClearUserData(CurName);
+        if(isSuccess)
+        {
+            RefreshMainPanel();
+            CurName = "";
+        }
+    }
     
 }

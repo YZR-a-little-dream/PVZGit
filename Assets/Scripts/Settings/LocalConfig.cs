@@ -1,7 +1,8 @@
 using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;                  //Application.persistentDataPath配置
-using System.Collections.Generic;   //使用字典命名空间
+using System.Collections.Generic;
+using System;   //使用字典命名空间
 public class LocalConfig 
 {
     //修改1:增加userData缓存数据
@@ -31,8 +32,10 @@ public class LocalConfig
         {
             return usersDataDic[userName];
         }
-
         string path = Application.persistentDataPath + string.Format("/users/{0}.json", userName);
+        // string temp = ($"/users/{userName}.json");
+        // string path = Application.persistentDataPath + temp; 
+
         // 检查用户配置文件是否存在
         if (File.Exists(path))
         {
@@ -45,6 +48,55 @@ public class LocalConfig
         else
         {
             return null;
+        }
+    }
+
+    // 加载所有用户储存的信息
+    public static List<UserData> LoadAllUserData()
+    {
+        string folderPath = Application.persistentDataPath + "/users";
+        DirectoryInfo folder = new DirectoryInfo(folderPath);
+        List<UserData> users = new List<UserData>();
+        FileInfo[] allFiles = folder.GetFiles("*.json");
+        //先检查内存
+        if(allFiles.Length == usersDataDic.Count)
+        {
+            foreach(UserData userData in usersDataDic.Values)
+            {
+                users.Add(userData);
+            }
+            return users;
+        }
+        //从硬盘加载
+        foreach(FileInfo file in allFiles)
+        {
+            UserData userData = LoadUserData(file.Name.Split('.')[0]);
+            if(userData != null)
+            {
+                users.Add(userData);
+            } 
+        }
+
+        return users;
+    }
+
+    public static bool ClearUserData(string userName)
+    {
+        string path = Application.persistentDataPath + string.Format("/users/{0}.json", userName);
+        if(File.Exists(path))
+        {
+            UserData oldUserData = LoadUserData(userName);
+            File.Delete(path);
+            if(usersDataDic.ContainsKey(userName))
+            {
+                usersDataDic.Remove(userName);
+            }
+            return true;
+        }
+        else
+        {
+            Debug.Log("-------删除失败-------");
+            return false;
         }
     }
 }
