@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
 public class UserPanel : BasePanel
@@ -35,12 +36,25 @@ public class UserPanel : BasePanel
         // testData = new List<UserData>();
         // testData.Add(new UserData("yzr1",1));
         // testData.Add(new UserData("yzr2",2));
+        EventCenter.Instance.AddEventListener<UserData>(EventType.EventNewUserCreate,OnEventNewUserCreate);
+        EventCenter.Instance.AddEventListener<UserData>(EventType.EventUserDelete,OnEventUserDelete);
     }
 
-    
+    private void OnEventUserDelete(UserData userData)
+    {
+        RefreshMainPanel();
+    }
+
+    //监听响应函数
+    private void OnEventNewUserCreate(UserData userData)
+    {
+        RefreshMainPanel();
+    }
 
     private void Start() {
         RefreshMainPanel();
+        //select item
+        CurName = BaseManager.Instance.currentUserName;
     }
 
     private void RefreshMainPanel()
@@ -84,7 +98,16 @@ public class UserPanel : BasePanel
 
         private void OnBtnOK()
     {
-        ClosePanel();
+        if(CurName != "")
+        {
+            BaseManager.Instance.SetCurrntUserName(CurName);
+            ClosePanel();
+        }
+        else
+        {
+            print(">>>>>>>>>>>>>>>Cur name is empty");
+        }
+        
     }
 
     private void OnBtnCancel()
@@ -94,15 +117,31 @@ public class UserPanel : BasePanel
 
     private void OnBtnDelete()
     {
-        //如果没有选中
+        //如果没有选中K
         if(CurName == "")
             return;
         bool isSuccess =  LocalConfig.ClearUserData(CurName);
-        if(isSuccess)
+        //如果删除成功并且当前名称等于当前用户名
+        if(isSuccess && CurName == BaseManager.Instance.currentUserName)
         {
-            RefreshMainPanel();
-            CurName = "";
+            List<UserData> users = LocalConfig.LoadAllUserData();
+            if(users.Count > 0)
+            {
+                BaseManager.Instance.SetCurrntUserName(users[0].name);
+            }
+            else
+            {
+                BaseManager.Instance.SetCurrntUserName("");
+                BaseUIManager.Instance.OpenPanel(UIConst.NewUserPanel);
+            }
         }
     }
-    
+
+    public override void ClosePanel()
+    {
+        base.ClosePanel();
+        EventCenter.Instance.RemoveEventListener<UserData>(EventType.EventNewUserCreate,OnEventNewUserCreate);
+        EventCenter.Instance.RemoveEventListener<UserData>(EventType.EventUserDelete,OnEventUserDelete);
+    }
+
 }
